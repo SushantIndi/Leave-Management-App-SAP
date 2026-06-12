@@ -1,0 +1,38 @@
+_schema-version: "3.1"
+ID: leave-app-cap
+version: 1.0.0
+
+modules:
+  - name: leave-app-cap
+    type: nodejs
+    path: .
+    
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+
+    build-parameters:
+      builder: npm
+
+    provides:
+      - name: leave-app-api
+        properties:
+          url: ${default-url}
+
+    requires:
+      - name: leave-destination
+      - name: leave-xsuaa
+
+resources:
+  - name: leave-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+
+  - name: leave-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
