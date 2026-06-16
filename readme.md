@@ -49,44 +49,27 @@ This project demonstrates a complete enterprise-grade SAP CAP application featur
 
 # 🏗️ Enterprise Architecture
 
-                        SAP BTP
-┌────────────────────────────────────────────────────────────┐
-│                                                            │
-│            SAP Business Application Studio                 │
-│                          │                                 │
-│                          ▼                                 │
-│                  SAP CAP Application                       │
-│                                                            │
-│      ┌──────────────────────────────────────────────┐      │
-│      │                  Approuter                   │      │
-│      │          Authentication Gateway              │      │
-│      └──────────────────────────────────────────────┘      │
-│                          │                                 │
-│                          ▼                                 │
-│                     XSUAA Service                          │
-│                          │                                 │
-│          ┌───────────────┴───────────────┐                 │
-│          ▼                               ▼                 │
-│   EmployeeService                 ManagerService           │
-│          │                               │                 │
-│          ▼                               ▼                 │
-│    Leave Requests                  Approve Leave           │
-│    Holiday Check                                           │
-│    Weather Lookup                                          │
-│                                                            │
-│                 └───────────────┬──────────────┘           │
-│                                 ▼                          │
-│                         SAP HANA Cloud                     │
-│                          HDI Container                     │
-│                                                            │
-│                                 ▼                          │
-│                       Destination Service                  │
-│                                 ▼                          │
-│                        External Weather API                │
-│                                                            │
-└────────────────────────────────────────────────────────────┘
-
----
+flowchart TD
+    BAS[Business Application Studio]
+    CAP[CAP Application]
+    AR[Approuter]
+    XSUAA[XSUAA]
+    BAS --> CAP
+    CAP --> AR
+    AR --> XSUAA
+    EMP[EmployeeService]
+    MGR[ManagerService]
+    XSUAA --> EMP
+    XSUAA --> MGR
+    HANA[SAP HANA Cloud]
+    EMP --> HANA
+    MGR --> HANA
+    DEST[Destination Service]
+    API[External Weather API]
+    HANA --> DEST
+    DEST --> API
+    
+  ---
 
 # ✨ Features
 
