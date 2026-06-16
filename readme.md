@@ -50,33 +50,46 @@ This project demonstrates a complete enterprise-grade SAP CAP application featur
 # 🏗️ Enterprise Architecture
 
 ```mermaid
-flowchart TD
+flowchart LR
 
-    BAS[Business Application Studio]
-    CAP[CAP Application]
-    AR[Approuter]
-    XSUAA[XSUAA]
+    U[Employee User]
 
-    BAS --> CAP
-    CAP --> AR
+    U --> AR[Application Router]
+
+    AR --> XSUAA[XSUAA Authentication]
+
+    XSUAA --> ES[Employee Service]
+
+    ES --> LR[Create Leave Request]
+
+    LR --> V[Business Validations]
+
+    V --> H1[Check Dates]
+    V --> H2[Check Holidays]
+
+    H1 --> HANA[SAP HANA Cloud<br/>HDI Container]
+    H2 --> HANA
+
+    ES --> W[Get Weather]
+
+    W --> DEST[Destination Service]
+    DEST --> API[External Weather API]
+
+    M[Manager User]
+
+    M --> AR
+
     AR --> XSUAA
 
-    EMP[EmployeeService]
-    MGR[ManagerService]
+    XSUAA --> MS[Manager Service]
 
-    XSUAA --> EMP
-    XSUAA --> MGR
+    MS --> A[Approve Leave]
 
-    HANA[SAP HANA Cloud]
+    A --> HANA
 
-    EMP --> HANA
-    MGR --> HANA
+    HANA --> STATUS[Leave Status Updated]
 
-    DEST[Destination Service]
-    API[External Weather API]
-
-    HANA --> DEST
-    DEST --> API
+    STATUS --> U
 ```
     
   ---
