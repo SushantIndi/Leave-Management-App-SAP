@@ -54,18 +54,24 @@ flowchart TD
     CAP[CAP Application]
     AR[Approuter]
     XSUAA[XSUAA]
+
     BAS --> CAP
     CAP --> AR
     AR --> XSUAA
+
     EMP[EmployeeService]
     MGR[ManagerService]
+
     XSUAA --> EMP
     XSUAA --> MGR
+
     HANA[SAP HANA Cloud]
     EMP --> HANA
     MGR --> HANA
+
     DEST[Destination Service]
     API[External Weather API]
+
     HANA --> DEST
     DEST --> API
     
