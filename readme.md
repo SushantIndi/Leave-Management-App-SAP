@@ -49,7 +49,9 @@ This project demonstrates a complete enterprise-grade SAP CAP application featur
 
 # 🏗️ Enterprise Architecture
 
+```mermaid
 flowchart TD
+
     BAS[Business Application Studio]
     CAP[CAP Application]
     AR[Approuter]
@@ -66,6 +68,7 @@ flowchart TD
     XSUAA --> MGR
 
     HANA[SAP HANA Cloud]
+
     EMP --> HANA
     MGR --> HANA
 
@@ -74,6 +77,7 @@ flowchart TD
 
     HANA --> DEST
     DEST --> API
+```
     
   ---
 
