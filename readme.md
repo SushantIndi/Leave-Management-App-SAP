@@ -47,7 +47,7 @@ This project demonstrates a complete enterprise-grade SAP CAP application featur
 
 ---
 
-# 🏗️ Enterprise Architecture
+# 🏗️ Workflow
 
 ```mermaid
 flowchart LR
