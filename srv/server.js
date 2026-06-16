@@ -1,19 +1,10 @@
 const cds = require('@sap/cds')
+const swagger = require('cds-swagger-ui-express')
 
 cds.on('bootstrap', app => {
 
-    const swaggerUi = require('swagger-ui-express')
-    const swaggerDocument = {
-        openapi: '3.0.0',
-        info: {
-            title: 'Leave Management API',
-            version: '1.0.0'
-        }
-    }
-
-    app.use('/api-docs',
-        swaggerUi.serve,
-        swaggerUi.setup(swaggerDocument)
+    app.use(
+        swagger()
     )
 })
 

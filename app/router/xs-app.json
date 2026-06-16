@@ -1,0 +1,13 @@
+{
+  "welcomeFile": "/",
+  "authenticationMethod": "route",
+
+  "routes": [
+    {
+      "source": "^/odata/(.*)$",
+      "target": "/odata/$1",
+      "destination": "leave-app-api",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+[
+  "src/gen/LeaveService.Employees.hdbview",
+  "src/gen/LeaveService.Holidays.hdbview",
+  "src/gen/LeaveService.LeaveRequests.hdbview"
+]

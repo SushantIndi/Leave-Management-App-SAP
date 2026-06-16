@@ -3,6 +3,24 @@ ID: leave-app-cap
 version: 1.0.0
 
 modules:
+
+  - name: leave-approuter
+    type: approuter.nodejs
+    path: app/router
+
+    requires:
+      - name: leave-xsuaa
+
+      - name: leave-app-api
+        group: destinations
+        properties:
+          name: leave-app-api
+          url: ~{url}
+          forwardAuthToken: true
+
+    parameters:
+      memory: 256M
+  
   - name: leave-app-cap
     type: nodejs
     path: .
@@ -22,6 +40,14 @@ modules:
     requires:
       - name: leave-destination
       - name: leave-xsuaa
+      - name: leave-hdi
+
+  - name: leave-db-deployer
+    type: hdb
+    path: gen/db
+
+    requires:
+      - name: leave-hdi
 
 resources:
   - name: leave-destination
@@ -36,3 +62,9 @@ resources:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
+  
+  - name: leave-hdi
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
