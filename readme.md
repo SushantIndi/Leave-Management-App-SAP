@@ -1,301 +1,526 @@
-# 🚀 SAP CAP Leave Management Application
+# 🚀 SAP CAP Leave Management System
 
-A cloud-native Leave Management System built using **SAP Cloud Application Programming Model (CAP)** and deployed on **SAP Business Technology Platform (SAP BTP) Cloud Foundry**.
+<div align="center">
 
-This project demonstrates the implementation of a complete enterprise-grade CAP application featuring OData services, business validations, role-based authorization, external API integration, Swagger documentation, and cloud deployment.
+![SAP](https://img.shields.io/badge/SAP-BTP-blue?style=for-the-badge)
+![CAP](https://img.shields.io/badge/SAP-CAP-success?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-Runtime-green?style=for-the-badge)
+![Cloud Foundry](https://img.shields.io/badge/Cloud-Foundry-orange?style=for-the-badge)
+![SAP HANA Cloud](https://img.shields.io/badge/SAP-HANA%20Cloud-blueviolet?style=for-the-badge)
+![OData](https://img.shields.io/badge/OData-V4-blue?style=for-the-badge)
 
----
+### Enterprise Leave Management Application built with SAP CAP and SAP BTP
 
-## 📌 Project Overview
+A cloud-native Leave Management System developed using the **SAP Cloud Application Programming Model (CAP)** and deployed on **SAP Business Technology Platform (SAP BTP) Cloud Foundry** with **SAP HANA Cloud**, **XSUAA Security**, **Destination Service**, and **Role-Based Authorization**.
 
-Organizations require a centralized system to manage employee leave requests, approvals, holiday calendars, and leave-related operations.
-
-This application provides:
-
-* Employee Management
-* Leave Request Management
-* Holiday Management
-* Manager Approval Workflow
-* Role-Based Security using XSUAA
-* Weather Information Integration
-* OData V4 APIs
-* Swagger API Documentation
-* SAP BTP Cloud Deployment
+</div>
 
 ---
 
-## 🏗️ Architecture
+# 📌 Project Overview
 
-```text
-┌────────────────────┐
-│     SAP BTP        │
-│  Cloud Foundry     │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│   SAP CAP Service  │
-│    LeaveService    │
-└─────────┬──────────┘
-          │
- ┌────────┼─────────┐
- ▼        ▼         ▼
-Employees Leaves Holidays
-          │
-          ▼
- Business Logic
-          │
-          ▼
- External Weather API
-```
+Organizations require a centralized solution to manage employee leave requests, approvals, holiday calendars, and employee workflows.
+
+This project demonstrates a complete enterprise-grade SAP CAP application featuring:
+
+✅ Employee Leave Management
+
+✅ Manager Approval Workflow
+
+✅ Holiday Management
+
+✅ SAP HANA Cloud Integration
+
+✅ External API Consumption
+
+✅ SAP Destination Service
+
+✅ Role-Based Authorization
+
+✅ XSUAA Authentication
+
+✅ Cloud Foundry Deployment
+
+✅ Swagger API Documentation
+
+✅ SAP BTP Administration
 
 ---
 
-## ✨ Features
+# 🏗️ Enterprise Architecture
 
-### 👨‍💼 Employee Management
+                        SAP BTP
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│            SAP Business Application Studio                 │
+│                          │                                 │
+│                          ▼                                 │
+│                  SAP CAP Application                       │
+│                                                            │
+│      ┌──────────────────────────────────────────────┐      │
+│      │                  Approuter                   │      │
+│      │          Authentication Gateway              │      │
+│      └──────────────────────────────────────────────┘      │
+│                          │                                 │
+│                          ▼                                 │
+│                     XSUAA Service                          │
+│                          │                                 │
+│          ┌───────────────┴───────────────┐                 │
+│          ▼                               ▼                 │
+│   EmployeeService                 ManagerService           │
+│          │                               │                 │
+│          ▼                               ▼                 │
+│    Leave Requests                  Approve Leave           │
+│    Holiday Check                                           │
+│    Weather Lookup                                          │
+│                                                            │
+│                 └───────────────┬──────────────┘           │
+│                                 ▼                          │
+│                         SAP HANA Cloud                     │
+│                          HDI Container                     │
+│                                                            │
+│                                 ▼                          │
+│                       Destination Service                  │
+│                                 ▼                          │
+│                        External Weather API                │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
 
-* Store employee information
-* Department-based employee records
-* Role assignment support
+---
 
-### 📝 Leave Request Management
+# ✨ Features
+
+## 👨‍💼 Employee Management
+
+* View employee records
+* Department-based employee data
+* Role-based access control
+
+## 📝 Leave Request Management
 
 * Apply for leave
-* View leave requests
-* Leave status tracking
-* Date validation
+* Track leave status
+* Leave validation rules
+* Prevent invalid requests
 
-### 📅 Holiday Management
+## 📅 Holiday Management
 
-* Maintain company holiday calendar
-* Check whether a specific date is a holiday
+* Company holiday calendar
+* Holiday lookup functionality
 
-### ✅ Manager Approval Workflow
+## ✅ Manager Approval Workflow
 
 * Approve leave requests
-* Role-based authorization
-* Manager-only access
+* Pending request validation
+* Manager-only authorization
 
-### 🌦 Weather Integration
+## 🌦 Weather Integration
 
-* Fetch real-time weather information
-* External API consumption using CAP handlers
+* Real-time weather information
+* External API integration
+* SAP Destination Service usage
 
-### 🔐 Security
+## 🔐 Security
 
 * SAP XSUAA Authentication
 * Role Templates
 * Role Collections
 * Authorization using `@requires`
 
-### 📚 API Documentation
+## 📚 API Documentation
 
 * Swagger UI Integration
-* OData Metadata Support
+* OData V4 Services
+* Metadata Support
 
 ---
 
-## 🛠 Technology Stack
+# ☁️ SAP BTP Services Used
 
-| Technology     | Purpose                        |
-| -------------- | ------------------------------ |
-| SAP CAP        | Backend Framework              |
-| Node.js        | Runtime                        |
-| SQLite         | Development Database           |
-| SAP HANA Cloud | Production Database            |
-| SAP BTP        | Cloud Platform                 |
-| Cloud Foundry  | Deployment Environment         |
-| XSUAA          | Authentication & Authorization |
-| OData V4       | API Standard                   |
-| Swagger UI     | API Documentation              |
+| Service                         | Purpose                        |
+| ------------------------------- | ------------------------------ |
+| SAP HANA Cloud                  | Production Database            |
+| HDI Container                   | Database Deployment            |
+| Cloud Foundry                   | Runtime Environment            |
+| SAP Business Application Studio | Development Environment        |
+| XSUAA                           | Authentication & Authorization |
+| Destination Service             | External API Connectivity      |
+| Cloud Identity Services         | Identity Management            |
+| Application Router              | Secure Application Access      |
 
 ---
 
-## 📂 Project Structure
+# 🏢 SAP BTP Cockpit Configuration
 
-```text
-leave_app_cap
+## Subaccount Administration
+
+* Created SAP BTP Trial Subaccount
+* Managed Service Subscriptions
+* Configured Cloud Foundry Environment
+* Configured Security Settings
+
+## Cloud Foundry
+
+* Created and managed Spaces
+* Managed Space Quotas
+* Application Deployment
+* Service Binding Configuration
+* Runtime Monitoring
+
+## Destination Service
+
+Configured destination:
+
+Destination Name : WeatherAPI
+Type             : HTTP
+Proxy Type       : Internet
+
+Used for secure external API communication.
+
+## Security Administration
+
+Configured:
+
+* Role Templates
+* Role Collections
+* User Assignments
+* Authorization Testing
+
+---
+
+# 🔐 Security & Authorization
+
+## Employee Service
+
+@requires: 'Employee'
+service EmployeeService
+
+## Manager Service
+
+@requires: 'Manager'
+service ManagerService
+
+### Role Collections
+
+| Role Collection | Purpose                   |
+| --------------- | ------------------------- |
+| LeaveEmployee   | Employee Access           |
+| LeaveManager    | Employee + Manager Access |
+
+### Role Templates
+
+| Role Template | Description                 |
+| ------------- | --------------------------- |
+| Employee      | Employee Operations         |
+| Manager       | Manager Approval Operations |
+
+---
+
+# 🗄️ SAP HANA Cloud Integration
+
+This project was designed for SAP HANA Cloud deployment.
+
+Implemented:
+
+* SAP HANA Cloud Instance
+* HDI Container
+* CAP Persistence Layer
+* Database Artifact Deployment
+* Service Binding
+
+### Database Entities
+
+Employee
+LeaveRequest
+Holiday
+
+---
+
+# 📡 OData Services
+
+## Employee Service
+
+### Employees
+
+GET /odata/v4/employee/Employees
+
+### Leave Requests
+
+GET /odata/v4/employee/LeaveRequests
+POST /odata/v4/employee/LeaveRequests
+
+### Holidays
+
+GET /odata/v4/employee/Holidays
+
+### Check Holiday
+
+GET /odata/v4/employee/checkHoliday(date='2026-01-01')
+
+### Get Weather
+
+GET /odata/v4/employee/getWeather(city='Bangalore')
+
+### Current User
+
+GET /odata/v4/employee/whoAmI()
+
+---
+
+## Manager Service
+
+### Approve Leave
+
+POST /odata/v4/manager/approveLeave
+
+---
+
+# 🌐 External API Integration
+
+Weather information is retrieved using:
+
+* SAP Destination Service
+* SAP Cloud SDK
+* HTTP Destination Configuration
+
+Flow:
+
+CAP Service
+     │
+     ▼
+Destination Service
+     │
+     ▼
+Weather API
+     │
+     ▼
+Response Returned
+
+---
+
+# 🧠 Business Rules Implemented
+
+## Leave Date Validation
+
+✔ Start Date Required
+
+✔ End Date Required
+
+✔ Start Date Cannot Exceed End Date
+
+✔ No Past Date Leave Requests
+
+✔ Invalid Date Format Prevention
+
+### Validation Example
+if (start > end) {
+   req.reject(
+      400,
+      'Start date cannot be after end date'
+   )
+}
+
+---
+
+## Holiday Validation
+
+checkHoliday(date)
+
+Checks whether the provided date exists in the holiday calendar.
+
+---
+
+## Manager Approval Validation
+
+Only pending requests can be approved.
+
+if (leave.status !== 'Pending')
+
+---
+
+## User Context Validation
+
+req.user.id
+req.user.roles
+
+Used for authorization and auditing.
+
+---
+
+# 📂 Project Structure
+
+leave-management-app
 │
-├── app/
-├── db/
+├── app
+│   └── router
+│       └── xs-app.json
+│
+├── db
 │   ├── schema.cds
-│   └── data/
+│   └── data
 │
-├── srv/
-│   ├── leave-service.cds
-│   └── leave-service.js
+├── srv
+│   ├── employee-service.cds
+│   ├── employee-service.js
+│   ├── manager-service.cds
+│   ├── manager-service.js
+│   └── server.js
 │
 ├── mta.yaml
 ├── xs-security.json
 ├── package.json
+├── test.http
 └── README.md
-```
 
 ---
 
-## 🔐 Security Configuration
+# 🛠️ Technology Stack
 
-The application uses SAP XSUAA for authentication and authorization.
-
-### Roles
-
-| Role     | Access                         |
-| -------- | ------------------------------ |
-| Employee | View and create leave requests |
-| Manager  | Approve leave requests         |
-
-### Protected Action
-
-```cds
-@requires: 'Manager'
-action approveLeave(ID: UUID) returns String;
-```
-
-Only users with the **Manager** role can approve leave requests.
+| Technology     | Purpose                  |
+| -------------- | ------------------------ |
+| SAP CAP        | Backend Framework        |
+| Node.js        | Runtime                  |
+| CDS            | Data Modeling            |
+| SQLite         | Development Database     |
+| SAP HANA Cloud | Production Database      |
+| HDI Container  | Database Deployment      |
+| SAP BTP        | Cloud Platform           |
+| Cloud Foundry  | Deployment Environment   |
+| XSUAA          | Authentication           |
+| SAP Cloud SDK  | External API Consumption |
+| OData V4       | Service Layer            |
+| Swagger UI     | API Documentation        |
+| Approuter      | Secure Routing           |
 
 ---
 
-## 📡 OData Endpoints
+# 🚀 Deployment
 
-### Employees
+## Build MTAR
 
-```http
-GET /odata/v4/leave/Employees
-```
-
-### Leave Requests
-
-```http
-GET /odata/v4/leave/LeaveRequests
-POST /odata/v4/leave/LeaveRequests
-```
-
-### Holidays
-
-```http
-GET /odata/v4/leave/Holidays
-```
-
-### Check Holiday
-
-```http
-GET /odata/v4/leave/checkHoliday(date=2026-01-01)
-```
-
-### Get Weather
-
-```http
-GET /odata/v4/leave/getWeather(city='Bangalore')
-```
-
-### Approve Leave
-
-```http
-POST /odata/v4/leave/approveLeave
-```
-
----
-
-## 🧠 Business Rules Implemented
-
-### Leave Date Validation
-
-```javascript
-if (startDate > endDate) {
-    req.error(400, 'Start date cannot be after end date')
-}
-```
-
-### Holiday Verification
-
-Checks whether a given date exists in the holiday calendar.
-
-### Manager Approval Validation
-
-Only Managers can approve leave requests.
-
----
-
-## 🚀 Deployment Process
-
-### Build MTAR
-
-```bash
 mbt build
-```
 
-### Deploy to Cloud Foundry
+## Deploy to Cloud Foundry
 
-```bash
-cf deploy mta_archives/leave-app-cap_1.0.0.mtar
-```
+cf deploy mta_archives/<application>.mtar
 
-### Check Application Status
+## Check Applications
 
-```bash
 cf apps
-```
 
-### View Logs
+## View Logs
 
-```bash
-cf logs leave-app-cap --recent
-```
+cf logs <application-name> --recent
 
 ---
 
-## 📚 Swagger Documentation
+# 📚 Swagger Documentation
 
 After deployment:
 
-```text
 https://<application-url>/api-docs
-```
 
-Swagger provides an interactive interface for testing and exploring APIs.
+Provides interactive API testing and documentation.
 
 ---
 
-## 🎯 Learning Outcomes
+# 🎯 Learning Outcomes
 
-Through this project, the following SAP BTP concepts were implemented:
+Through this project, the following SAP technologies and concepts were implemented:
 
-* SAP CAP Development
+### SAP CAP
+
 * CDS Data Modeling
-* OData V4 Services
-* Custom Actions & Functions
+* Service Projections
+* OData V4
+* Custom Functions
+* Custom Actions
 * Event Handlers
-* External API Integration
-* SAP XSUAA Security
-* Role-Based Authorization
-* SAP HANA Readiness
-* Cloud Foundry Deployment
-* MTA Packaging
-* Swagger Documentation
+
+### SAP Security
+
+* XSUAA Authentication
+* Role Templates
+* Role Collections
+* User Authorization
+* Access Control
+
+### SAP HANA
+
+* SAP HANA Cloud
+* HDI Containers
+* Service Bindings
+* Database Deployment
+
+### SAP BTP Administration
+
+* Destination Configuration
+* Cloud Foundry Spaces
+* Service Subscriptions
+* User Management
+* Role Assignment
+* Runtime Monitoring
+
+### Integration
+
+* SAP Cloud SDK
+* REST API Consumption
+* Destination Service Connectivity
 
 ---
 
-## 👨‍💻 Author
+# 🌟 Key Highlights
 
-**Sushant Indi**
+✅ SAP CAP Development
 
-Electronics & Communication Engineering (ECE)
+✅ SAP BTP Administration
 
-SAP CAP | SAP BTP | Cloud Foundry | OData | Node.js
+✅ SAP HANA Cloud
+
+✅ HDI Containers
+
+✅ Cloud Foundry Deployment
+
+✅ XSUAA Security
+
+✅ Destination Service
+
+✅ Role Collections
+
+✅ Application Router
+
+✅ External API Integration
+
+✅ Swagger Documentation
 
 ---
 
-## ⭐ Future Enhancements
+# 🔮 Future Enhancements
 
 * SAP Fiori Frontend
 * Leave Balance Tracking
 * Email Notifications
 * Multi-Level Approval Workflow
 * SAP Work Zone Integration
-* SAP HANA Cloud Persistence
 * Analytics Dashboard
+* SAP Build Apps Integration
 
 ---
 
-### Built with SAP CAP and SAP BTP ☁️
+# 👨‍💻 Author
+
+### Sushant Indi
+
+Electronics & Communication Engineering (ECE)
+
+**SAP CAP | SAP BTP | SAP HANA Cloud | Cloud Foundry | Node.js | OData | XSUAA**
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project useful, consider giving it a star!
+
+### Built with SAP CAP & SAP BTP ☁️
+
+</div>
